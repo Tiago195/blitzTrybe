@@ -1,5 +1,6 @@
 import connection from './connection'
-import IUser from '../interfaces/user.interface'
+import IUser, { newUser } from '../interfaces/user.interface'
+import { ResultSetHeader } from 'mysql2'
 // import { RowDataPacket } from 'mysql2'
 
 const getAll = async (): Promise<Omit<IUser, 'password'>[]> => {
@@ -8,8 +9,14 @@ const getAll = async (): Promise<Omit<IUser, 'password'>[]> => {
   return users as Omit<IUser, 'password'>[]
 }
 
-const create =  () => {
-  console.log('falta implementaçao')
+const create = async ({name, password, email, github, is_admin = 0}: newUser) => {
+  const [{insertId}] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Users (name, password, email, github, is_admin) VALUES (?, ?, ?, ?, ?)',
+    [name, password, email, github || null, is_admin]
+  )
+  const newUser = {name, password, email, github, is_admin,id: insertId}
+
+  return newUser
 }
 
 const getById =  () => {
