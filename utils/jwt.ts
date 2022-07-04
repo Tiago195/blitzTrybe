@@ -1,5 +1,5 @@
-import jwt, { SignOptions } from 'jsonwebtoken'
-import IUser from '../interfaces/user.interface'
+import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken'
+import { userWithoutPassword } from '../interfaces/user.interface'
 
 const secret = 'seusecretdetoken'
 
@@ -8,9 +8,9 @@ const jwtConfig: SignOptions = {
   algorithm: 'HS256',
 }
 
-const encode = (data:Omit<IUser, 'password'>) => jwt.sign(data, secret, jwtConfig)
+const encode = (data: userWithoutPassword) => jwt.sign({data}, secret, jwtConfig)
 
-const decode = (token: string) => jwt.verify(token, secret)
+const decode = (token: string): JwtPayload => jwt.verify(token, secret) as JwtPayload
 
 export default {
   encode,

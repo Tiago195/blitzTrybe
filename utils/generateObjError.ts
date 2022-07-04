@@ -1,0 +1,1 @@
+export default (message: string, statusCode: number) => ({message, statusCode})

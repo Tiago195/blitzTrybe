@@ -1,28 +1,33 @@
+import { newTask } from '../interfaces/task.interface'
 import taskModel from '../models/task.model'
 
 // const getAll =  () => {
 //   console.log('falta implementaçao')
 // }
 
-const create =  () => {
-  console.log('falta implementaçao')
+const create = async (newTask: newTask) => {
+  const task = await taskModel.create(newTask)
+  
+  return task
 }
 
-const getById =  () => {
-  console.log('falta implementaçao')
+const getByIdUser = async (id: string) => {
+  const tasks = await taskModel.getByIdUser(id)
+
+  return tasks
 }
 
 const editById =  () => {
   console.log('falta implementaçao')
 }
 
-const deleteById =  () => {
-  console.log('falta implementaçao')
+const deleteById = async (id: string) => {
+  await taskModel.deleteById(id)
 }
 
 export default {
   create,
-  getById,
+  getByIdUser,
   editById,
   deleteById
 }
