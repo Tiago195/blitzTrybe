@@ -53,6 +53,7 @@ export default function Home() {
         name: sign.signName,
         email: sign.signEmail,
         password: sign.signPassword,
+        github: sign.signGithub,
         is_admin: sign.isAdmin,
       });
       return toast.success(data.message);
