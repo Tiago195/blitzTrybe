@@ -14,7 +14,7 @@ services:
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=tutu
       - MYSQL_DATABASE=blitzTrybe
-      - HOST=localhost
+      - HOST=blitzTrybe-bd
       - JWT_SECRET=seusecretdetoken
     tty: true
     stdin_open: true
