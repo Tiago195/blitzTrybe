@@ -4,7 +4,7 @@ import { ResultSetHeader, RowDataPacket } from 'mysql2'
 // import { RowDataPacket } from 'mysql2'
 
 const getAll = async (): Promise<Omit<IUser, 'password'>[]> => {
-  const [users] = await connection.execute('SELECT id, name, email, github, is_admin FROM Users')
+  const [users] = await connection.execute('SELECT id, name, email, github, is_admin FROM Users WHERE is_admin = 0')
 
   return users as Omit<IUser, 'password'>[]
 }
@@ -19,8 +19,10 @@ const create = async ({name, password, email, github, is_admin = 0}: newUser) =>
   return newUser
 }
 
-const getById =  () => {
-  console.log('falta implementaçao')
+const getById = async (id: number): Promise<IUser> => {
+  const [user] = await connection.execute<IUser[] & RowDataPacket[][]>('SELECT * FROM Users WHERE id = ?', [id])
+
+  return user[0] as IUser
 }
 
 const getByEmailAndPassword = async ({email, password}: userLogin): Promise<userWithoutPassword> => {

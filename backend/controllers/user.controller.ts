@@ -37,7 +37,7 @@ const getByEmailAndPassword = async (req: Request, res: Response, next: NextFunc
     
     const token = jwt.encode(user)
 
-    res.status(200).json({token})
+    res.status(200).json({token, user})
   } catch (error) {
     next(error)
   }
