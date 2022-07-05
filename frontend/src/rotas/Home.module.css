@@ -1,0 +1,28 @@
+.homeContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.containers {
+  display:  flex;
+  flex-direction: column;
+  width: 40vw;
+  gap: 30px;
+  align-items: center;
+  border: 1px solid black;
+  padding: 80px;
+}
+
+.label {
+  display:  flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.admin {
+  align-self: flex-start;
+}
+
+.signContainer {
+
+}
